@@ -53,9 +53,14 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+# Activate react jsx transformation from the middleman-react gem
+# read more:  https://github.com/plasticine/middleman-react
+activate :react do |config|
+  config.harmony = true
+  config.strip_types = true
+end
 
 # Active autoprefixer from 'middleman-autoprefixer' gem
-
 activate :autoprefixer do
   # https://github.com/middleman/middleman-autoprefixer
   # config.browsers = ['last 2 versions', 'Explorer >= 9']
@@ -84,5 +89,9 @@ configure :build do
 end
 
 after_configuration do
+  # Make the React source code available and serve it as 'react.js' so it can be
+  # called from sprockets with `//=require react`
+  sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
+
   sprockets.append_path File.join "#{root}", 'source/components'
 end
