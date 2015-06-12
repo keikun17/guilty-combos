@@ -89,9 +89,6 @@ configure :build do
 end
 
 after_configuration do
-  # Make the React source code available and serve it as 'react.js' so it can be
-  # called from sprockets with `//=require react`
-  sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
-
+  sprockets.append_path File.join "#{root}", 'source/bower_components'
   sprockets.append_path File.join "#{root}", 'source/components'
 end
