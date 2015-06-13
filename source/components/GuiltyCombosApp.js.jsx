@@ -4,8 +4,6 @@
 // require('../styles/main.css');
 // require('../styles/all.sass');
 
-var imageURL = require('../images/yeoman.png');
-
 var GuiltyCombosApp = React.createClass({
   render: function() {
     return (
