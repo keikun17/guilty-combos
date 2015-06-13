@@ -12,6 +12,12 @@ var Routes = (
   </Route>
 );
 
-Router.run(Routes, function (Handler) {
+var run = Router.run(Routes, function (Handler) {
   React.render(<Handler/>, content);
 });
+
+if (window.addEventListener) {
+  window.addEventListener('DOMContentLoaded', run);
+} else {
+  window.attachEvent('onload', run);
+}
