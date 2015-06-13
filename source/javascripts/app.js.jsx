@@ -1,4 +1,3 @@
-
 //= require react/react-with-addons
 //= require react-router
 //= require config
