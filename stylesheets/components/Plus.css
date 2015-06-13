@@ -1,0 +1,22 @@
+/* line 1, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Plus.sass */
+.Plus {
+  display: inline-block;
+  background: blue;
+  content: "+";
+  color: blue;
+  width: 5px;
+  height: 15px;
+  position: relative;
+  margin: 0 8px 0 8px; }
+  /* line 11, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Plus.sass */
+  .Plus:selection {
+    color: blue; }
+  /* line 15, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Plus.sass */
+  .Plus:before {
+    background: blue;
+    content: "";
+    width: 15px;
+    height: 5px;
+    position: absolute;
+    top: 5px;
+    left: -5px; }

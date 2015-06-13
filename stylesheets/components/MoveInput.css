@@ -1,0 +1,9 @@
+/* line 1, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/MoveInput.sass */
+.MoveInput {
+  border: 1px solid #f00;
+  border-radius: 50%;
+  line-height: 2rem;
+  width: 2rem;
+  display: inline-block;
+  text-align: center;
+  margin: 0 2px 0 2px; }

@@ -1,0 +1,11 @@
+/* line 2, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/main.scss */
+html, body {
+  background: #222222; }
+
+/* main */
+/* line 8, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/main.scss */
+.main {
+  width: 100%;
+  height: 100%;
+  background: #222222;
+  color: #fff; }
