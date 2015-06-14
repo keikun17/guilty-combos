@@ -65,7 +65,7 @@ activate :autoprefixer do
   # https://github.com/middleman/middleman-autoprefixer
   # config.browsers = ['last 2 versions', 'Explorer >= 9']
   # config.cascade  = false
-  # config.inline   = true
+  config.inline   = true
   # config.ignore   = ['hacks.css']
 end
 
