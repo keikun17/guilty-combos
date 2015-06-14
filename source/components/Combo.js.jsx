@@ -1,4 +1,3 @@
-//= require MoveInput
 //= require Plus
 //= require Move
 
@@ -8,27 +7,20 @@
 var Combo = React.createClass({
 
   translate_move_string: function(str) {
-    str.split(" ")
+    return str.split(" ");
   },
 
   moves: function() {
     var move_inputs = [];
-    var translate_move_string = this.translate_move_string
+    var translate_move_string = this.translate_move_string;
 
     var move_inputs = this.props.move_string.map(function(move, index, move_string ){
-      console.log("move is");
-      console.log(move);
-      // console.log("index is");
-      // console.log(index);
-      // console.log("move string is");
-      // console.log(move_string)
-
-      // console.log("combo is complete?");
-      var combo_complete = ((index + 1) !== move_string.length);
-      // console.log(combo_complete);
+      var move_inputs = translate_move_string(move);
+      var combo_complete = ((index + 1) === move_string.length);
+      // var combo_complete=false;
 
       return (
-        <Move key={index} move_inputs={move} combo_complete={combo_complete} />
+        <Move key={index} move_inputs={move_inputs} combo_complete={combo_complete} />
       )
     });
 

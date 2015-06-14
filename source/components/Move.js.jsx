@@ -1,5 +1,4 @@
-// require('styles/MoveInput.sass');
-
+//= require MoveInput
 var Move = React.createClass({
 
   render: function () {
@@ -9,10 +8,11 @@ var Move = React.createClass({
       separator = <Plus />;
     }
 
+    console.log(this.props);
     var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs ){
       console.log("input is");
       console.log(input);
-      return <MoveInput key={index} input={input} combo_complete={combo_complete} />
+      return <MoveInput key={index} input={input} />
     });
 
     return (
