@@ -6,10 +6,6 @@
 
 var Combo = React.createClass({
 
-  something: function(){
-    return "kek";
-  },
-
   render: function () {
     var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs){
       console.log(move_inputs.length);
