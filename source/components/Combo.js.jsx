@@ -1,22 +1,48 @@
 //= require MoveInput
 //= require Plus
+//= require Move
 
 
 // require('styles/Combo.sass');
 
 var Combo = React.createClass({
 
-  render: function () {
-    var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs){
-      console.log(move_inputs.length);
-      var combo_complete = ((index + 1) !== move_inputs.length);
-      return <MoveInput key={index} input={input} combo_complete={combo_complete} />;
+  translate_move_string: function(str) {
+    str.split(" ")
+  },
+
+  moves: function() {
+    var move_inputs = [];
+    var translate_move_string = this.translate_move_string
+
+    var move_inputs = this.props.move_string.map(function(move, index, move_string ){
+      console.log("move is");
+      console.log(move);
+      // console.log("index is");
+      // console.log(index);
+      // console.log("move string is");
+      // console.log(move_string)
+
+      // console.log("combo is complete?");
+      var combo_complete = ((index + 1) !== move_string.length);
+      // console.log(combo_complete);
+
+      return (
+        <Move key={index} move_inputs={move} combo_complete={combo_complete} />
+      )
     });
+
+    return move_inputs
+  },
+
+
+  render: function () {
+    moves = this.moves(this);
 
     return (
       <div className="Combo">
         <p>{this.props.name}</p>
-        {move_inputs}
+        {moves}
       </div>
     );
 
