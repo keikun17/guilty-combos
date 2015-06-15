@@ -8,8 +8,8 @@ var GuiltyCombosApp = React.createClass({displayName: "GuiltyCombosApp",
   render: function() {
 
     var combo_data = [
-      {name:"Dust Loop", combo_string: ['P', 'K', 'S', 'HS', 'P K S', '↓ ↘ →'] },
-      {name:"Gunflame FRC", combo_string: ['↓ ↘ → P', 'P K S'] }
+      {name:"Dust Loop", combo_string: ['P','.4', 'K', '.3','S', 'HS', '.7', 'P K S', '↓ ↘ →'] },
+      {name:"Gunflame FRC", combo_string: ['↓ ↘ → P', '.6', 'P K S', '.2', '↓ ↘ → K', '↓ ↘ → P', '.6', 'P K S',  '.2', '↓ ↘ → K'] }
     ];
 
     var combos = combo_data.map(function(combo , index){

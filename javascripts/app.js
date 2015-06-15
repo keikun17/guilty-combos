@@ -25103,18 +25103,35 @@ var Combo = React.createClass({displayName: "Combo",
     var translate_combo_string = this.translate_combo_string;
 
     var delay = 0;
+    var reg = /^\d+$/;
+
+    function isDelay(move){
+      return !isNaN(move);
+    }
+
+    var delay = 0;
     var move_inputs = this.props.combo_string.map(function(move, index, combo_string ){
-      var move_inputs = translate_combo_string(move);
-      var combo_complete = ((index + 1) === combo_string.length);
-      // var combo_complete=false;
+      if(isDelay(move) === false){
+        var move_inputs = translate_combo_string(move);
+        var combo_complete = ((index + 1) === combo_string.length);
+        // var combo_complete=false;
 
-      console.log("index is");
-      console.log(index);
-      delay = 1 * (index + 1);
+        console.log("move is");
+        console.log(move);
 
-      return (
-        React.createElement(Move, {delay: delay, key: index, move_inputs: move_inputs, combo_complete: combo_complete})
-      )
+        if(isDelay(combo_string[index-1]) === true){
+          delay = delay + parseFloat(combo_string[index-1]);
+        }else{
+          delay = delay + 0.01;
+        }
+
+        console.log("delay is " + delay);
+
+        return (
+          React.createElement(Move, {delay: delay, key: index, move_inputs: move_inputs, combo_complete: combo_complete})
+        )
+      }
+
     });
 
     return move_inputs
@@ -25149,8 +25166,8 @@ var GuiltyCombosApp = React.createClass({displayName: "GuiltyCombosApp",
   render: function() {
 
     var combo_data = [
-      {name:"Dust Loop", combo_string: ['P', 'K', 'S', 'HS', 'P K S', '↓ ↘ →'] },
-      {name:"Gunflame FRC", combo_string: ['↓ ↘ → P', 'P K S'] }
+      {name:"Dust Loop", combo_string: ['P','.4', 'K', '.3','S', 'HS', '.7', 'P K S', '↓ ↘ →'] },
+      {name:"Gunflame FRC", combo_string: ['↓ ↘ → P', '.6', 'P K S', '.2', '↓ ↘ → K', '↓ ↘ → P', '.6', 'P K S',  '.2', '↓ ↘ → K'] }
     ];
 
     var combos = combo_data.map(function(combo , index){
