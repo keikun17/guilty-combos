@@ -29,11 +29,13 @@ var Combo = React.createClass({
         console.log("move is");
         console.log(move);
 
-        if(isDelay(combo_string[index+1]) === true){
-          delay = delay + parseFloat(combo_string[index+1]);
+        if(isDelay(combo_string[index-1]) === true){
+          delay = delay + parseFloat(combo_string[index-1]);
         }else{
           delay = delay + 0.01;
         }
+
+        console.log("delay is " + delay);
 
         return (
           <Move delay={delay} key={index} move_inputs={move_inputs} combo_complete={combo_complete} />
