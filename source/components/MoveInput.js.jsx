@@ -1,5 +1,3 @@
-// require('styles/MoveInput.sass');
-
 var MoveInput = React.createClass({
 
   render: function () {
