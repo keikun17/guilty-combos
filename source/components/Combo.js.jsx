@@ -19,7 +19,7 @@ var Combo = React.createClass({
       return !isNaN(move);
     }
 
-    delay = 0
+    var delay = 0;
     var move_inputs = this.props.combo_string.map(function(move, index, combo_string ){
       if(isDelay(move) === false){
         var move_inputs = translate_combo_string(move);
