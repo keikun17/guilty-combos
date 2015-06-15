@@ -8,7 +8,7 @@ var MoveInput = React.createClass({
     }
 
     return (
-        <div className="MoveInputWrapper">
+        <div className="MoveInputWrapper" transitionAppear={true}>
           <div className="MoveInput">
             {this.props.input}
           </div>

@@ -1,7 +1,5 @@
 //= require Plus
 //= require Move
-
-
 // require('styles/Combo.sass');
 
 var Combo = React.createClass({
@@ -14,13 +12,18 @@ var Combo = React.createClass({
     var move_inputs = [];
     var translate_combo_string = this.translate_combo_string;
 
+    var delay = 0;
     var move_inputs = this.props.combo_string.map(function(move, index, combo_string ){
       var move_inputs = translate_combo_string(move);
       var combo_complete = ((index + 1) === combo_string.length);
       // var combo_complete=false;
 
+      console.log("index is");
+      console.log(index);
+      delay = 1 * (index + 1);
+
       return (
-        <Move key={index} move_inputs={move_inputs} combo_complete={combo_complete} />
+        <Move delay={delay} key={index} move_inputs={move_inputs} combo_complete={combo_complete} />
       )
     });
 
@@ -34,7 +37,9 @@ var Combo = React.createClass({
     return (
       <div className="Combo">
         <p>{this.props.name}</p>
-        {moves}
+        <ReactCSSTransitionGroup transitionName="movey" component="div" transitionAppear={true}>
+          {moves}
+        </ReactCSSTransitionGroup>
       </div>
     );
 
