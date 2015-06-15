@@ -9,8 +9,8 @@ var GuiltyCombosApp = React.createClass({
     return (
       <div className='main'>
         <ReactTransitionGroup transitionName="fade">
-          <Combo name="Dust Loop" move_string={['P', 'K', 'S', 'HS', 'P K S', '↓ ↘ →']} />
-          <Combo name="Gunflame FRC" move_string={['↓ ↘ → P', 'P K S']} />
+          <Combo name="Dust Loop" combo_string={['P', 'K', 'S', 'HS', 'P K S', '↓ ↘ →']} />
+          <Combo name="Gunflame FRC" combo_string={['↓ ↘ → P', 'P K S']} />
         </ReactTransitionGroup>
       </div>
     );
