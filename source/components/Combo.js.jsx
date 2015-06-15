@@ -37,7 +37,7 @@ var Combo = React.createClass({
     return (
       <div className="Combo">
         <p>{this.props.name}</p>
-        <ReactCSSTransitionGroup transitionName="movey" component="div" transitionAppear={true}>
+        <ReactCSSTransitionGroup transitionName="an-moves" component="div" transitionAppear={true}>
           {moves}
         </ReactCSSTransitionGroup>
       </div>
