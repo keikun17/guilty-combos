@@ -8,12 +8,18 @@ var Move = React.createClass({
       separator = <Plus />;
     }
 
+
     var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs ){
       return <MoveInput key={index} input={input} />
     });
 
+    var divStyle = {
+      WebkitTransitionDelay: this.props.delay + "s",
+      msTransitionDelay: this.props.delay + "s",
+    }
+
     return (
-        <div className="Move">
+        <div style={divStyle} className="Move">
           {move_inputs}
           {separator}
         </div>
