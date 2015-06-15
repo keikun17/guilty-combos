@@ -1,26 +1,45 @@
-//= require MoveInput
 //= require Plus
-
-
+//= require Move
 // require('styles/Combo.sass');
 
 var Combo = React.createClass({displayName: "Combo",
 
-  something: function(){
-    return "kek";
+  translate_combo_string: function(str) {
+    return str.split(" ");
   },
 
-  render: function () {
-    var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs){
-      console.log(move_inputs.length);
-      var combo_complete = ((index + 1) !== move_inputs.length);
-      return React.createElement(MoveInput, {key: index, input: input, combo_complete: combo_complete});
+  moves: function() {
+    var move_inputs = [];
+    var translate_combo_string = this.translate_combo_string;
+
+    var delay = 0;
+    var move_inputs = this.props.combo_string.map(function(move, index, combo_string ){
+      var move_inputs = translate_combo_string(move);
+      var combo_complete = ((index + 1) === combo_string.length);
+      // var combo_complete=false;
+
+      console.log("index is");
+      console.log(index);
+      delay = 1 * (index + 1);
+
+      return (
+        React.createElement(Move, {delay: delay, key: index, move_inputs: move_inputs, combo_complete: combo_complete})
+      )
     });
+
+    return move_inputs
+  },
+
+
+  render: function () {
+    moves = this.moves(this);
 
     return (
       React.createElement("div", {className: "Combo"}, 
         React.createElement("p", null, this.props.name), 
-        move_inputs
+        React.createElement(ReactCSSTransitionGroup, {transitionName: "an-moves", component: "div", transitionAppear: true}, 
+          moves
+        )
       )
     );
 

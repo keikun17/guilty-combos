@@ -1,6 +1,18 @@
 /* line 1, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Combo.sass */
 .Combo {
   border: 1px dashed #f00; }
+/* line 1, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Move.sass */
+.Move {
+  display: inline-block; }
+
+/* line 9, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Move.sass */
+.an-moves-appear {
+  opacity: 0.3;
+  -webkit-transition: opacity 0s ease-in;
+          transition: opacity 0s ease-in; }
+  /* line 13, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/Move.sass */
+  .an-moves-appear.an-moves-appear-active {
+    opacity: 1; }
 /* line 1, /Users/Valerian/Projects/Area51/combo-middleman/source/stylesheets/components/MoveInput.sass */
 .MoveInput {
   border: 1px solid #f00;

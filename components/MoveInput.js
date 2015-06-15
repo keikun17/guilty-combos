@@ -1,5 +1,3 @@
-// require('styles/MoveInput.sass');
-
 var MoveInput = React.createClass({displayName: "MoveInput",
 
   render: function () {
@@ -10,7 +8,7 @@ var MoveInput = React.createClass({displayName: "MoveInput",
     }
 
     return (
-        React.createElement("div", {className: "MoveInputWrapper"}, 
+        React.createElement("div", {className: "MoveInputWrapper", transitionAppear: true}, 
           React.createElement("div", {className: "MoveInput"}, 
             this.props.input
           ), 

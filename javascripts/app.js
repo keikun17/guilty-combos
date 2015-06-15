@@ -25030,27 +25030,7 @@ return /******/ (function(modules) { // webpackBootstrap
 var Router = ReactRouter
 var Route = ReactRouter.Route;
 var ReactTransitionGroup = React.addons.TransitionGroup;
-// require('styles/MoveInput.sass');
-
-var MoveInput = React.createClass({displayName: "MoveInput",
-
-  render: function () {
-
-    var separator;
-    if(this.props.combo_complete === true) {
-      separator = React.createElement(Plus, null);
-    }
-
-    return (
-        React.createElement("div", {className: "MoveInputWrapper"}, 
-          React.createElement("div", {className: "MoveInput"}, 
-            this.props.input
-          ), 
-          separator
-        )
-      );
-  }
-});
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Plus = React.createClass({displayName: "Plus",
 
   render: function () {
@@ -25062,29 +25042,94 @@ var Plus = React.createClass({displayName: "Plus",
   }
 });
 
+var MoveInput = React.createClass({displayName: "MoveInput",
+
+  render: function () {
+
+    var separator;
+    if(this.props.combo_complete === true) {
+      separator = React.createElement(Plus, null);
+    }
+
+    return (
+        React.createElement("div", {className: "MoveInputWrapper", transitionAppear: true}, 
+          React.createElement("div", {className: "MoveInput"}, 
+            this.props.input
+          ), 
+          separator
+        )
+      );
+  }
+});
+var Move = React.createClass({displayName: "Move",
+
+  render: function () {
+
+    var separator;
+    if(this.props.combo_complete !== true) {
+      separator = React.createElement(Plus, null);
+    }
 
 
+    var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs ){
+      return React.createElement(MoveInput, {key: index, input: input})
+    });
+
+    var divStyle = {
+      WebkitTransitionDelay: this.props.delay + "s",
+      msTransitionDelay: this.props.delay + "s",
+    }
+
+    return (
+        React.createElement("div", {style: divStyle, className: "Move"}, 
+          move_inputs, 
+          separator
+        )
+      );
+  }
+});
 
 
 // require('styles/Combo.sass');
 
 var Combo = React.createClass({displayName: "Combo",
 
-  something: function(){
-    return "kek";
+  translate_combo_string: function(str) {
+    return str.split(" ");
   },
 
-  render: function () {
-    var move_inputs = this.props.move_inputs.map(function(input, index, move_inputs){
-      console.log(move_inputs.length);
-      var combo_complete = ((index + 1) !== move_inputs.length);
-      return React.createElement(MoveInput, {key: index, input: input, combo_complete: combo_complete});
+  moves: function() {
+    var move_inputs = [];
+    var translate_combo_string = this.translate_combo_string;
+
+    var delay = 0;
+    var move_inputs = this.props.combo_string.map(function(move, index, combo_string ){
+      var move_inputs = translate_combo_string(move);
+      var combo_complete = ((index + 1) === combo_string.length);
+      // var combo_complete=false;
+
+      console.log("index is");
+      console.log(index);
+      delay = 1 * (index + 1);
+
+      return (
+        React.createElement(Move, {delay: delay, key: index, move_inputs: move_inputs, combo_complete: combo_complete})
+      )
     });
+
+    return move_inputs
+  },
+
+
+  render: function () {
+    moves = this.moves(this);
 
     return (
       React.createElement("div", {className: "Combo"}, 
         React.createElement("p", null, this.props.name), 
-        move_inputs
+        React.createElement(ReactCSSTransitionGroup, {transitionName: "an-moves", component: "div", transitionAppear: true}, 
+          moves
+        )
       )
     );
 
@@ -25102,11 +25147,19 @@ var Combo = React.createClass({displayName: "Combo",
 
 var GuiltyCombosApp = React.createClass({displayName: "GuiltyCombosApp",
   render: function() {
+
+    var combo_data = [
+      {name:"Dust Loop", combo_string: ['P', 'K', 'S', 'HS', 'P K S', '↓ ↘ →'] },
+      {name:"Gunflame FRC", combo_string: ['↓ ↘ → P', 'P K S'] }
+    ];
+
+    var combos = combo_data.map(function(combo , index){
+      return React.createElement(Combo, {name: combo.name, combo_string: combo.combo_string, key: index})
+    })
+
     return (
       React.createElement("div", {className: "main"}, 
-        React.createElement(ReactTransitionGroup, {transitionName: "fade"}, 
-          React.createElement(Combo, {name: "Dust Loop", move_inputs: ['P', 'K', 'S', 'HS', '↓', '↘', '→']})
-        )
+        combos
       )
     );
   }
